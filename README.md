@@ -14,7 +14,7 @@ On your [view](https://github.com/andrerferrer/respond-to-ajax-demo/blob/master/
 <%= link_to '❌', restaurant, method: :delete, remote: true, data: { confirm: "Are you sure?" } %>
 ```
 
-### 2. Add to the [controller](https://github.com/andrerferrer/respond-to-ajax-demo/blob/master/app/controllers/restaurants_controller.rb).
+### 2. Add to the [controller](https://github.com/andrerferrer/respond-to-ajax-demo/blob/master/app/controllers/restaurants_controller.rb)
 We'll add the respond_to
 
 ```ruby
