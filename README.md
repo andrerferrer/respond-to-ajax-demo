@@ -6,35 +6,32 @@ This is a demo to show-case how to implement AJAX in rails using the [`turbolink
 
 ## What needs to be done?
 
-### 1. Add the gem
-```ruby
-# Gemfile
-gem 'turbolinks'
-```
-Remember to `bundle install`
-
-### 2. Require turbolinks in your JS
-In your [`application.js`]()
-```js
-require("turbolinks").start()
-
-// ...
-
-// Remember to call your functions here
-document.addEventListener('turbolinks:load', () => {
-});
-```
-
-### 3. Add `remote: true`
-In the [view]()
-
+### 1. Add `remote: true` to the link
+On your view
 ```erb
 <%= link_to '❌', restaurant, method: :delete, remote: true, data: { confirm: "Are you sure?" } %>
 ```
 
-### 4. Troubleshooting
-If nothing happens, remember to `redirect_to` something in your controller
+### 2. Add to the controller
+We'll add the respond_to
 
+```ruby
+def destroy
+  set_restaurant
+  @restaurant.destroy
+  respond_to do |format|
+    format.js
+  end
+end
+```
+
+### 3. Create the `js.erb` view
+
+In the `destroy.js.erb` we will write the js that will return. With this JS we will remove the element from the DOM.
+
+```js
+document.getElementById("restaurant-<%= @restaurant.id %>").remove()
+```
 
 And we're good to go 🤓
 Good Luck and Have Fun
