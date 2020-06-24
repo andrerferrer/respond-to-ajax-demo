@@ -20,7 +20,9 @@ class RestaurantsController < ApplicationController
   def destroy
     set_restaurant
     @restaurant.destroy
-    redirect_to root_path
+    respond_to do |format|
+      format.js
+    end
   end
 
   private
